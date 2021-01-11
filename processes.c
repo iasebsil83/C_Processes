@@ -49,8 +49,9 @@
      - proc_start()
      - proc_stop()
 
-    08/01/2021 > [0.1.0] :
+    11/01/2021 > [0.1.0] :
     - Created processes.c/.h.
+    - Created demonstration program.
 
     BUGS : .
     NOTES : .
