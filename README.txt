@@ -1,4 +1,5 @@
-This program is a simple utility library that will allow you to manipulate processes easier.
+This program is a simple utility library that will allow you to manipulate
+processes a little bit easier.
 
 A demonstration program is made in prog.c.
 
