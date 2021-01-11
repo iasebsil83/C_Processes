@@ -41,7 +41,7 @@
                                  Processes by I.A.
 
         Processes is just an utility program that allows you to manipulate
-    processes more simply than standard c does.
+    processes a little bit more simply than standard c does.
 
     This program only adds 4 functions :
      - proc_create()
