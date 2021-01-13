@@ -3,7 +3,7 @@ processes a little bit easier.
 
 A demonstration program is made in prog.c.
 
-More informations about this library are available in processes.h.
+More informations about this library are available in processes.c.
 
 
 
