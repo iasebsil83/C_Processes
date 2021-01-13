@@ -7,6 +7,11 @@
 
 
 
+//strings utility (this is NOT a requirement of processes.h but function strArr_split() is quite useful)
+#include "src/more_strings.h"
+
+
+
 //processes utility
 #include "processes.h"
 
@@ -74,20 +79,15 @@
 //main
 int main(){
 	//presentation
-	printf("I.A. > PID[%i], PPID[%i] : This is a basic example of process management using \"processes.c/.h\".\n", getpid(), getppid());
-
-
-
+	//printf("I.A. > PID[%i], PPID[%i] : This is a basic example of process management using \"processes.c/.h\".\n", getpid(), getppid());
 
 
 
 	//create subprocess 1
 	printf("I.A. > PID[%i], PPID[%i] : Creating process 1.\n", getpid(), getppid());
-	char* command1[] = {
-		"run", "02", "25", NULL
-	};
+	char** command1 = strArr_split("run 02 25", ' ');
 	proc* p1 = proc_create(
-		"examples/program1/run",
+		"src/program1/run",
 		command1
 	);
 
@@ -95,18 +95,16 @@ int main(){
 
 	//create subprocess 2
 	printf("I.A. > PID[%i], PPID[%i] : Creating process 2.\n", getpid(), getppid());
-	char* command2[] = {
-		"run", "22", "45", NULL
-	};
+	char** command2 = strArr_split("run 22 45", ' ');
 	proc* p2 = proc_create(
-		"examples/program2/run",
+		"src/program2/run",
 		command2
 	);
 
 
 
 	//start subprocess 1
-	printf("I.A. > PID[%i], PPID[%i] : Starting process 1 (path \"examples/program1/run\" with command \"./run 02 25\").\n", getpid(), getppid());
+	printf("I.A. > PID[%i], PPID[%i] : Starting process 1 (path \"src/program1/run\" with command \"./run 02 25\").\n", getpid(), getppid());
 	proc_start(p1);
 
 	//sleep 2 seconds
@@ -114,7 +112,7 @@ int main(){
 	usleep(2000000);
 
 	//start subprocess 2
-	printf("I.A. > PID[%i], PPID[%i] : Starting process 2 (path \"examples/program2/run\" with command \"./run 22 45\").\n", getpid(), getppid());
+	printf("I.A. > PID[%i], PPID[%i] : Starting process 2 (path \"src/program2/run\" with command \"./run 22 45\").\n", getpid(), getppid());
 	proc_start(p2);
 
 	//sleep 10 seconds
@@ -142,6 +140,8 @@ int main(){
 	printf("I.A. > PID[%i], PPID[%i] : Deleting processes.\n", getpid(), getppid());
 	proc_delete(p1);
 	proc_delete(p2);
+	strArr_free(command1);
+	strArr_free(command2);
 
 
 
