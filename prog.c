@@ -4,11 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-
-
-//strings utility (this is NOT a requirement of processes.h but function strArr_split() is quite useful)
-#include "src/more_strings.h"
+#include <string.h>
 
 
 
@@ -74,18 +70,56 @@
 
 
 
+// ---------------- DECLARATIONS ----------------
+
+//string allocation shortcut
+char* malloc_string(char* s){
+	char* newS = malloc(strlen(s));
+	if(newS == NULL){
+		printf("FATAL ERROR > prog.c : malloc_string() : Computer refuses to give more memory.\n");
+		exit(EXIT_FAILURE);
+	}
+
+	//write text
+	sprintf(newS, "%s", s);
+	return newS;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ---------------- EXECUTION ----------------
 
 //main
 int main(){
 	//presentation
-	//printf("I.A. > PID[%i], PPID[%i] : This is a basic example of process management using \"processes.c/.h\".\n", getpid(), getppid());
+	printf("I.A. > PID[%i], PPID[%i] : This is a basic example of process management using \"processes.c/.h\".\n", getpid(), getppid());
 
 
 
 	//create subprocess 1
 	printf("I.A. > PID[%i], PPID[%i] : Creating process 1.\n", getpid(), getppid());
-	char** command1 = strArr_split("run 02 25", ' ');
+	char** command1 = malloc(4*sizeof(char*));
+	command1[0] = malloc_string("run");
+	command1[1] = malloc_string("02");
+	command1[2] = malloc_string("25");
+	command1[3] = NULL;
 	proc* p1 = proc_create(
 		"src/program1/run",
 		command1
@@ -95,7 +129,11 @@ int main(){
 
 	//create subprocess 2
 	printf("I.A. > PID[%i], PPID[%i] : Creating process 2.\n", getpid(), getppid());
-	char** command2 = strArr_split("run 22 45", ' ');
+	char** command2 = malloc(4*sizeof(char*));
+	command2[0] = malloc_string("run");
+	command2[1] = malloc_string("22");
+	command2[2] = malloc_string("35");
+	command2[3] = NULL;
 	proc* p2 = proc_create(
 		"src/program2/run",
 		command2
@@ -116,23 +154,25 @@ int main(){
 	proc_start(p2);
 
 	//sleep 10 seconds
-	printf("I.A. > PID[%i], PPID[%i] : Sleeping 5 seconds.\n", getpid(), getppid());
-	usleep(10000000);
+	printf("I.A. > PID[%i], PPID[%i] : Sleeping 4 seconds.\n", getpid(), getppid());
+	usleep(4000000);
 
 
 
 
 	//stop subprocess 1
-	printf("I.A. > PID[%i], PPID[%i] : Stopping process 1.\n", getpid(), getppid());
-	proc_stop(p1);
+	printf("I.A. > PID[%i], PPID[%i] : Stopping process 1 in \"kill\" mode.\n", getpid(), getppid());
+	proc_stop(p1, PROC__STOP_KILL);
+	printf("I.A. > PID[%i], PPID[%i] : Process 1 stopped.\n", getpid(), getppid());
 
 	//sleep 4 seconds
 	printf("I.A. > PID[%i], PPID[%i] : Sleeping 4 seconds.\n", getpid(), getppid());
 	usleep(4000000);
 
 	//stop subprocess 2
-	printf("I.A. > PID[%i], PPID[%i] : Stopping process 2.\n", getpid(), getppid());
-	proc_stop(p2);
+	printf("I.A. > PID[%i], PPID[%i] : Stopping process 2 in \"wait\" mode.\n", getpid(), getppid());
+	proc_stop(p2, PROC__STOP_WAIT);
+	printf("I.A. > PID[%i], PPID[%i] : Process 2 stopped.\n", getpid(), getppid());
 
 
 
@@ -140,8 +180,14 @@ int main(){
 	printf("I.A. > PID[%i], PPID[%i] : Deleting processes.\n", getpid(), getppid());
 	proc_delete(p1);
 	proc_delete(p2);
-	strArr_free(command1);
-	strArr_free(command2);
+	free(command1[2]);
+	free(command1[1]);
+	free(command1[0]);
+	free(command1);
+	free(command2[2]);
+	free(command2[1]);
+	free(command2[0]);
+	free(command2);
 
 
 
