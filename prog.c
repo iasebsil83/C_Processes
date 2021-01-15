@@ -116,6 +116,10 @@ int main(){
 	//create subprocess 1
 	printf("I.A. > PID[%i], PPID[%i] : Creating process 1.\n", getpid(), getppid());
 	char** command1 = malloc(4*sizeof(char*));
+	if(command1 == NULL){
+		printf("FATAL ERROR > prog.c : main() : Computer refuses to give more memory.\n");
+		exit(EXIT_FAILURE);
+	}
 	command1[0] = malloc_string("run");
 	command1[1] = malloc_string("02");
 	command1[2] = malloc_string("25");
@@ -130,6 +134,10 @@ int main(){
 	//create subprocess 2
 	printf("I.A. > PID[%i], PPID[%i] : Creating process 2.\n", getpid(), getppid());
 	char** command2 = malloc(4*sizeof(char*));
+	if(command2 == NULL){
+		printf("FATAL ERROR > prog.c : main() : Computer refuses to give more memory.\n");
+		exit(EXIT_FAILURE);
+	}
 	command2[0] = malloc_string("run");
 	command2[1] = malloc_string("22");
 	command2[2] = malloc_string("35");
