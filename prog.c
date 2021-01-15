@@ -76,7 +76,7 @@
 char* malloc_string(char* s){
 	char* newS = malloc(strlen(s));
 	if(newS == NULL){
-		printf("FATAL ERROR > prog.c : malloc_string() : Computer refuses to give more memory.\n");
+		printf("FATAL ERROR > prog.c : malloc_string() : PID[%i], PPID[%i] : Computer refuses to give more memory.\n", getpid(), getppid());
 		exit(EXIT_FAILURE);
 	}
 
@@ -117,7 +117,7 @@ int main(){
 	printf("I.A. > PID[%i], PPID[%i] : Creating process 1.\n", getpid(), getppid());
 	char** command1 = malloc(4*sizeof(char*));
 	if(command1 == NULL){
-		printf("FATAL ERROR > prog.c : main() : Computer refuses to give more memory.\n");
+		printf("FATAL ERROR > prog.c : main() : PID[%i], PPID[%i] : Computer refuses to give more memory.\n", getpid(), getppid());
 		exit(EXIT_FAILURE);
 	}
 	command1[0] = malloc_string("run");
@@ -135,7 +135,7 @@ int main(){
 	printf("I.A. > PID[%i], PPID[%i] : Creating process 2.\n", getpid(), getppid());
 	char** command2 = malloc(4*sizeof(char*));
 	if(command2 == NULL){
-		printf("FATAL ERROR > prog.c : main() : Computer refuses to give more memory.\n");
+		printf("FATAL ERROR > prog.c : main() : PID[%i], PPID[%i] : Computer refuses to give more memory.\n", getpid(), getppid());
 		exit(EXIT_FAILURE);
 	}
 	command2[0] = malloc_string("run");
