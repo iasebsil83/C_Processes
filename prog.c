@@ -188,14 +188,6 @@ int main(){
 	printf("I.A. > PID[%i], PPID[%i] : Deleting processes.\n", getpid(), getppid());
 	proc_delete(p1);
 	proc_delete(p2);
-	free(command1[2]);
-	free(command1[1]);
-	free(command1[0]);
-	free(command1);
-	free(command2[2]);
-	free(command2[1]);
-	free(command2[0]);
-	free(command2);
 
 
 
