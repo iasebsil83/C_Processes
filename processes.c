@@ -147,6 +147,7 @@ void proc_delete(proc* p){ //will free #args# but not #exePath# ! (allowing you 
 		free(*a);
 		a++;
 	}
+	free(p->args);
 	free(p);
 }
 
