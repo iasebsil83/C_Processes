@@ -1,9 +1,9 @@
 This program is a simple utility library that will allow you to manipulate
 processes a little bit easier.
 
-A demonstration program is made in prog.c.
+A demonstration program is made in src/prog.c.
 
-More information about this library are available in processes.c.
+More information about this library are available in lib/processes.c.
 
 
 

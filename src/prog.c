@@ -9,15 +9,7 @@
 
 
 //processes utility
-#include "processes.h"
-
-
-
-
-
-
-
-
+#include "../lib/processes.h"
 
 
 
@@ -48,16 +40,8 @@
     BUGS : Active bugs in last version.
     NOTES : Notes.
 
-    Contact : 
+    Contact : ...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-
-
-
-
-
-
-
 
 
 
@@ -84,14 +68,6 @@ char* malloc_string(char* s){
 	sprintf(newS, "%s", s);
 	return newS;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -188,9 +164,6 @@ int main(){
 	printf("I.A. > PID[%i], PPID[%i] : Deleting processes.\n", getpid(), getppid());
 	proc_delete(p1);
 	proc_delete(p2);
-
-
-
 
 
 

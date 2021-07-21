@@ -55,8 +55,6 @@ int char2int(char c){
 
 
 
-
-
 // ---------------- EXECUTION ----------------
 
 //main
