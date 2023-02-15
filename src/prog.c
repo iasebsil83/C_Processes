@@ -8,12 +8,9 @@
 
 
 
+
 //processes utility
 #include "../lib/processes.h"
-
-
-
-
 
 
 
@@ -50,10 +47,6 @@
 
 
 
-
-
-
-
 // ---------------- DECLARATIONS ----------------
 
 //string allocation shortcut
@@ -68,10 +61,6 @@ char* malloc_string(char* s){
 	sprintf(newS, "%s", s);
 	return newS;
 }
-
-
-
-
 
 
 
